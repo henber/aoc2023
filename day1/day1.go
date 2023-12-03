@@ -21,10 +21,7 @@ func stripMap(str, chr string) string {
 }
 
 func solveA() {
-	lines, err := util.ReadLines("day1/input.txt")
-	if err != nil {
-		return
-	}
+	lines := util.ReadLines("day1/input.txt")
 
 	sum := 0
 	for _, str := range lines {
@@ -43,10 +40,7 @@ type StringNumber struct {
 var numbersInString = [9]string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
 func solveB() {
-	lines, err := util.ReadLines("day1/input.txt")
-	if err != nil {
-		return
-	}
+	lines := util.ReadLines("day1/input.txt")
 
 	sum := 0
 	for _, str := range lines {
