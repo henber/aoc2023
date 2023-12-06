@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math"
 	"regexp"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -40,10 +39,10 @@ func solveA(seeds []int, mapperChain [][]Mapper) {
 
 func solveB(seeds []int, mappers [][]Mapper) {
 	ranges := parseRanges(seeds)
-	//fmt.Println(ranges)
+	fmt.Println(len(ranges))
 
 	result := performRangeMapChain(ranges, mappers)
-	//fmt.Println(len(result))
+	fmt.Println(len(result))
 
 	min := math.MaxInt64
 	for _, res := range result {
@@ -152,7 +151,7 @@ func mapSeed(seed int, mappers []Mapper) int {
 var numbersRegex = regexp.MustCompile("(\\d+)")
 
 func parseInput(input []string) ([]int, [][]Mapper) {
-	seeds := convertToInts(numbersRegex.FindAllString(input[0], -1))
+	seeds := util.ConvertToInts(numbersRegex.FindAllString(input[0], -1))
 
 	var mappers [][]Mapper
 	for i := 2; i < len(input); i++ {
@@ -167,22 +166,13 @@ func parseInput(input []string) ([]int, [][]Mapper) {
 	return seeds, mappers
 }
 
-func convertToInts(array []string) []int {
-	var res []int
-	for _, s := range array {
-		integer, _ := strconv.Atoi(s)
-		res = append(res, integer)
-	}
-	return res
-}
-
 func parseMappers(index int, input []string) (int, []Mapper) {
 	var mappers []Mapper
 	for i := index; i < len(input); i++ {
 		if len(strings.TrimSpace(input[i])) == 0 {
 			return i, mappers
 		}
-		numbers := convertToInts(numbersRegex.FindAllString(input[i], -1))
+		numbers := util.ConvertToInts(numbersRegex.FindAllString(input[i], -1))
 		mappers = append(mappers, Mapper{numbers[0], numbers[1], numbers[2]})
 	}
 	return len(input), mappers
