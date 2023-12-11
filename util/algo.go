@@ -19,3 +19,11 @@ func LCM(a, b int, integers ...int) int {
 
 	return result
 }
+
+func Sum(integers []int) int {
+	sum := 0
+	for _, integer := range integers {
+		sum += integer
+	}
+	return sum
+}
